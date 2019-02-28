@@ -1,0 +1,49 @@
+.form{
+    position: fixed !important;
+    margin:30px 10vw !important;
+    border-radius:3px !important;
+    width:80vw !important;
+    min-height:90.5vh !important;
+}
+.form .content:nth-child(1){
+    font-family: 'Ubuntu',sans-serif;
+    color:#727272;
+    max-height:45px;
+}
+.form .content:nth-child(2){
+    max-height: 45px;
+}
+.formcard .overlay{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:100vh;
+    background-color:#000;
+    opacity:.5;
+}
+.form .icon.close{
+    float:right;
+    font-size:25px;
+}
+.form .progress{
+    text-align:center;
+    font-family: 'Ubuntu',sans-serif;
+    color:#0B1320;
+}
+.form .actions{
+    max-height: 45px;
+    padding:5px !important;
+}
+.form .actions .btns{
+    float:right;
+}
+.form .progress .label{
+    color:#fafafa;
+    background-color:orangered;
+    margin-right:10px !important;
+}
+.form .icon.close:hover{
+    cursor: pointer;
+    color:rgb(187, 65, 8);
+}

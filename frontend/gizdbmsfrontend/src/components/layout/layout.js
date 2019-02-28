@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './layout.css';
-import {Card, Accordion, Image, Grid, Icon, Menu} from 'semantic-ui-react';
+import {Card, Accordion, Image, Grid, Icon, Menu, Button} from 'semantic-ui-react';
 import {NavLink} from 'react-router-dom';
 import DP from '../../assets/kristy.png';
+import {NewSale, NewCustomer, NewProduct} from '../../scenes/forms/forms';
 
 class SideNav extends React.Component{
     constructor(props){
@@ -15,7 +16,7 @@ class SideNav extends React.Component{
 
     handleLinkClick = (e,titleProps) =>{
         const {index} = titleProps;
-        const {activeIndex} = this.state.activeIndex;
+        const {activeIndex} = this.state;
         const newIndex = activeIndex === index? -1:index;
         this.setState({
             activeIndex:newIndex
@@ -50,18 +51,18 @@ class SideNav extends React.Component{
             <NavLink to="/dashboard">
             <Accordion.Title active={activeIndex ===0} index={0} onClick={this.handleLinkClick}>
             <Icon name="home"/>
-            Home
+            Overview
             </Accordion.Title>
             </NavLink>
 
             <NavLink to="/tables">
-            <Accordion.Title active={activeIndex ===0} index={0} onClick={this.handleLinkClick}>
+            <Accordion.Title active={activeIndex ===1} index={1} onClick={this.handleLinkClick}>
             <Icon name="table"/>
             Tables
             </Accordion.Title>
             </NavLink>
 
-            <Accordion.Content active={activeIndex === 0}>
+            <Accordion.Content active={activeIndex === 1}>
             <NavLink to="/suntransfer">
             <li>Sun transfer</li>
             </NavLink>
@@ -71,22 +72,22 @@ class SideNav extends React.Component{
             </Accordion.Content>
 
             <NavLink to="/forms">
-            <Accordion.Title active={activeIndex ===0} index={0} onClick={this.handleLinkClick}>
+            <Accordion.Title active={activeIndex ===2} index={2} onClick={this.handleLinkClick}>
             <Icon name="wpforms"/>
             Forms
             </Accordion.Title>
             </NavLink>
-            <Accordion.Content active={activeIndex === 0}>
+            <Accordion.Content active={activeIndex === 2}>
 
             </Accordion.Content>
 
             <NavLink to="reports">
-            <Accordion.Title active={activeIndex ===0} index={0} onClick={this.handleLinkClick}>
+            <Accordion.Title active={activeIndex ===3} index={3} onClick={this.handleLinkClick}>
             <Icon name="chart line"/>
             Reports
             </Accordion.Title>
             </NavLink>
-            <Accordion.Content active={activeIndex === 0}>
+            <Accordion.Content active={activeIndex === 3}>
             <NavLink to="/suntransfer">
             <li>Sales per company</li>
             </NavLink>
@@ -130,7 +131,9 @@ class HeaderComponent extends React.Component{
                     <Icon name="bars"/>
                 </Menu.Item>
                 <Menu.Menu position="right">
-                
+                <Menu.Item>
+                    <NewSale/>
+                </Menu.Item>
                 </Menu.Menu>
             </Menu>
             </div>

@@ -25,6 +25,21 @@
     border-radius:0 !important;
     color:rgb(2, 21, 34) !important;
     height:100%;
+    box-shadow: none !important;
+    border:0 !important;
+}
+.layout .header-component .right.menu{
+    padding-right:300px;
+}
+.layout .header-component .right.menu .item::before{
+    border:0 !important;
+    box-shadow: none !important;
+    background:none !important;
+}
+.layout .header-component .right.menu .item button{
+    padding:5px;
+    height:30px !important;
+    margin-right:10px;
 }
 .layout .logo p{
     font-size:20px;

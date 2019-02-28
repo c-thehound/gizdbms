@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,7 +47,18 @@ INSTALLED_APPS = [
     'api'
 ]
 
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES":('JWT',),
+}
+
+DJOSER = {
+    "PASSWORD_RESET_CONFIRM_URL":'',
+    "ACTIVATION_URL":'',
+    "SEND_ACTIVATION_EMAIL":True,
+    "SERIALIZERS":{}
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':(
@@ -140,3 +152,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+django_heroku.settings(locals())

@@ -13,7 +13,36 @@
 .dashboard .row1 .card,.dashboard .row2 .card,.dashboard .row3 .card{
     width:100%;
     min-height:400px;
+    border-radius:3px !important;
+}
+.dashboard .row1 .card .content:nth-child(1),.dashboard .row2 .card .content:nth-child(1),.dashboard .row3 .card .content:nth-child(1){
+    padding:5px !important;
+    text-align:left;
+    max-height:30px;
+}
+.dashboard .row1 .card .content:nth-child(1) .header,.dashboard .row2 .card .content:nth-child(1) .header,.dashboard .row3 .card .content:nth-child(1) .header{
+    color:#727272 !important;
+    font-family:'Ubuntu',sans-serif;
+    font-weight:200 !important;
+    font-size:15px;
+}
+.dashboard .table{
     border-radius:0 !important;
+    border:0 !important;
+    width:100% !important;
+}
+.dashboard .table .nestedcells div{
+    width:inherit !important;
+    box-shadow:0 1px 2px -2px #727272;
+}
+.dashboard .table .nestedcells{
+    padding:0 !important;
+}
+.dashboard .table .nestedcells td{
+    border:0 !important;
+}
+.dashboard .row1 .card .content:nth-child(2),.dashboard .row2 .card .content:nth-child(2),.dashboard .row3 .card .content:nth-child(2){
+    padding:0 !important;
 }
 .dashboard .row1 .column,.dashboard .row2 .column,.dashboard .row3 .column{
     padding-right:10px !important;
@@ -33,5 +62,26 @@
 .dashboard .analytics .card .content:nth-child(2){
     font-size:30px;
     font-weight:bold;
-    color:rgb(5, 92, 5);
+    color:rgb(0, 139, 98);
+}
+
+/* Chart styles */
+svg .label{
+    fill:#fafafa;
+    z-index: 9999;
+    opacity: 1;
+}
+svg .labelg rect{
+    fill:#D3422D;
+    border-radius:5px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 600ms;
+    opacity:.7;
+}
+svg .labelg .value{
+    fill:#0B1320;
+}
+svg rect{
+    fill:rgb(0, 139, 98);
+    opacity: .8;
 }

@@ -17,7 +17,6 @@ class App extends Component {
       <Switch>
         <Route path="/dashboard" component={Dashboard}/>
         <Route path="/tables" component={Tables}/>
-        <Route path="/forms" component={Forms}/>
         <Route path="/reports" component={Reports}/>
         <Route render={() => <Redirect to="/dashboard"/>}></Route>
       </Switch>
