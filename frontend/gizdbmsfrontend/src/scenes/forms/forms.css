@@ -3,7 +3,12 @@
     margin:30px 10vw !important;
     border-radius:3px !important;
     width:80vw !important;
-    min-height:90.5vh !important;
+    max-height:90.5vh !important;
+    height:auto;
+}
+.newsale.form{
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .form .content:nth-child(1){
     font-family: 'Ubuntu',sans-serif;
@@ -12,6 +17,9 @@
 }
 .form .content:nth-child(2){
     max-height: 45px;
+}
+.form .content:nth-child(3){
+    height:auto;
 }
 .formcard .overlay{
     position: fixed;
@@ -46,4 +54,56 @@
 .form .icon.close:hover{
     cursor: pointer;
     color:rgb(187, 65, 8);
+}
+
+.mainform .stage{
+    width:100%;
+    min-height:450px !important;
+    text-align: center;
+}
+.review .form .input{
+    width:50% !important;
+    float:left;
+    left:30px;
+    margin-top:20px;
+    color:#000 !important;
+    opacity: 1 !important;
+}
+.review .form label{
+    text-align:left;
+    margin-left:-40px !important;
+    position: absolute;
+    margin-top:25px !important;
+    color:orangered !important;
+    opacity:1 !important;
+}
+.review .button{
+    margin-top:5px !important;
+    width:185px;
+    right:150px;
+    position: absolute;
+}
+.mainform{
+    padding:0 !important;
+}
+.productform .form{
+    left:15%;
+    max-width:50% !important;
+}
+.mainform .selectcustomer{
+    /* left:15%; */
+    /* top:200px; */
+    /* margin-right:25%; */
+    max-width:20% !important;
+}
+.mainform .createcustomer{
+    /* top:250px; */
+    max-width:20% !important;
+    /* left:15%; */
+}
+.mainform .form .input{
+    height:35px;
+}
+.stage .grid .row,.stage .grid{
+    min-height:inherit !important;
 }

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from database.models import Product,Sale,Customer
+from database.models import Product,Sale,Customer,County
 
 class ProductSerializer(serializers.ModelSerializer):
 
@@ -17,4 +17,10 @@ class CustomerSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Customer
+        fields = "__all__"
+
+class CountySerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = County
         fields = "__all__"

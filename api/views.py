@@ -54,6 +54,22 @@ def customer(request):
             return Response(serializer.data,status = status.HTTP_201_CREATED)
         return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET','POST'])
+def county(request):
+    """
+    List all counties, or add a new county
+    """
+    if request.method == 'GET':
+        counties = County.objects.all()
+        serializer = CountySerializer(counties,many=True)
+        return Response(serializer.data)
+    elif request.method == "POST":
+        serializer = CountySerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status = status.HTTP_201_CREATED)
+        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
+
 def get_sales_per_product(products,filter_param,*args):
     """
     Returns a list of sales per product

@@ -4,7 +4,7 @@ import datetime
 class Customer(models.Model):
     fname = models.CharField(max_length=200,blank=False)
     lname = models.CharField(max_length=200,blank=False)
-    id_no = models.CharField(max_length=200,blank=False)
+    id_no = models.CharField(max_length=200,blank=False,unique=True,primary_key=True)
     phone_number = models.CharField(max_length=200,blank=False)
     alternative_phone_number = models.CharField(max_length=200,blank=True)
     GENDERS = (
@@ -52,7 +52,6 @@ class Sale(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE,null=False)
     sales_man = models.ForeignKey("accounts.User",on_delete=models.CASCADE,null=False,default=1)
     purchase_date = models.DateField(default=datetime.date.today,blank=False)
-    constituency = models.ForeignKey(Constituency,on_delete=models.CASCADE)
     county = models.ForeignKey(County,on_delete=models.CASCADE)
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     quantity = models.IntegerField()

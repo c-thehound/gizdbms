@@ -71,23 +71,13 @@ class SideNav extends React.Component{
             </NavLink>
             </Accordion.Content>
 
-            <NavLink to="/forms">
-            <Accordion.Title active={activeIndex ===2} index={2} onClick={this.handleLinkClick}>
-            <Icon name="wpforms"/>
-            Forms
-            </Accordion.Title>
-            </NavLink>
-            <Accordion.Content active={activeIndex === 2}>
-
-            </Accordion.Content>
-
             <NavLink to="reports">
-            <Accordion.Title active={activeIndex ===3} index={3} onClick={this.handleLinkClick}>
+            <Accordion.Title active={activeIndex ===2} index={2} onClick={this.handleLinkClick}>
             <Icon name="chart line"/>
             Reports
             </Accordion.Title>
             </NavLink>
-            <Accordion.Content active={activeIndex === 3}>
+            <Accordion.Content active={activeIndex === 2}>
             <NavLink to="/suntransfer">
             <li>Sales per company</li>
             </NavLink>

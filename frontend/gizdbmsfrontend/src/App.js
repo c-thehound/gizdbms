@@ -5,8 +5,8 @@ import store from './services/store/store';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import Dashboard from './scenes/dashboard/dashboard';
 import 'semantic-ui-css/semantic.min.css';
+import 'animate.css/animate.css';
 import Tables from './scenes/tables/tables';
-import Forms from './scenes/forms/forms';
 import Reports from './scenes/reports/reports';
 
 class App extends Component {
