@@ -58,18 +58,9 @@ class SideNav extends React.Component{
             <NavLink to="/tables">
             <Accordion.Title active={activeIndex ===1} index={1} onClick={this.handleLinkClick}>
             <Icon name="table"/>
-            Tables
+            Sales
             </Accordion.Title>
             </NavLink>
-
-            <Accordion.Content active={activeIndex === 1}>
-            <NavLink to="/suntransfer">
-            <li>Sun transfer</li>
-            </NavLink>
-            <NavLink to="/azuri">
-            <li>Azuri</li>
-            </NavLink>
-            </Accordion.Content>
 
             <NavLink to="reports">
             <Accordion.Title active={activeIndex ===2} index={2} onClick={this.handleLinkClick}>

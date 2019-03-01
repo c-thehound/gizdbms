@@ -1,4 +1,4 @@
-import { HANDLE_ON_CHANGE, MAKE_SALE } from "../actions/action-types";
+import { HANDLE_ON_CHANGE, MAKE_SALE, FETCH_SALES } from "../actions/action-types";
 
 const initialState = {
     customer:"",
@@ -8,7 +8,8 @@ const initialState = {
     quantity:"",
     deposit:"",
     credit:"",
-    red:{}
+    red:{},
+    sales:[]
 }
 
 export default function(state = initialState,action){
@@ -22,6 +23,11 @@ export default function(state = initialState,action){
             return{
                 ...state,
                 res:action.payload
+            }
+        case FETCH_SALES:
+            return{
+                ...state,
+                sales:action.payload
             }
         default:
             return state;
