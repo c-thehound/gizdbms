@@ -4,7 +4,7 @@ import './layout.css';
 import {Card, Accordion, Image, Grid, Icon, Menu, Button} from 'semantic-ui-react';
 import {NavLink} from 'react-router-dom';
 import DP from '../../assets/kristy.png';
-import {NewSale, NewCustomer, NewProduct} from '../../scenes/forms/forms';
+import {NewSale, UploadExcel, UploadCsv} from '../../scenes/forms/forms';
 
 class SideNav extends React.Component{
     constructor(props){
@@ -114,6 +114,12 @@ class HeaderComponent extends React.Component{
                 <Menu.Menu position="right">
                 <Menu.Item>
                     <NewSale/>
+                </Menu.Item>
+                <Menu.Item>
+                    <UploadExcel/>
+                </Menu.Item>
+                <Menu.Item>
+                    <UploadCsv/>
                 </Menu.Item>
                 </Menu.Menu>
             </Menu>

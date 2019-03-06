@@ -41,11 +41,14 @@ INSTALLED_APPS = [
     # Downloaded
     'rest_framework',
     'djoser',
+    'import_export',
     #Created
     'accounts',
     'database',
     'api'
 ]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 AUTH_USER_MODEL = 'accounts.User'
 

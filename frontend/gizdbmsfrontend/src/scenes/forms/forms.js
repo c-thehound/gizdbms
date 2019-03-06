@@ -1,12 +1,92 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {handleChange,makeSale} from '../../services/store/actions/saleActions';
-import { TransitionablePortal,Button,Icon,Card ,Form, Breadcrumb, Grid, Label, Divider, GridColumn} from 'semantic-ui-react';
+import { TransitionablePortal,Button,Icon,Card ,Form, Breadcrumb, Grid, Label, Divider, GridColumn, Message} from 'semantic-ui-react';
 import './forms.css';
 import { dataCache } from '../../utils/dataCache';
 import WOW from 'wowjs';
 import $ from 'jquery';
 import csrftoken from '../../utils/csrf_token';
+import isObjEmpty from '../../utils/isObjEmpty';
+
+export class UploadCsv extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            open:false
+        }
+    }
+
+    handleOpen = () => this.setState({open:true})
+    handleClose = () => this.setState({open:false})
+
+    render(){
+        return(
+            <TransitionablePortal
+            closeOnTriggerClick
+            closeOnDocumentClick
+            open={this.state.open}
+            onOpen={this.handleOpen}
+            onClose={this.handleClose}
+            openOnTriggerClick
+            transition={{animation:"fade down",duration:300}}
+            trigger={
+                <Button color="facebook" icon labelPosition="right">
+                <Icon name="cloud upload"/>
+                Import from CSV
+                </Button>
+            }
+            >
+            <div className="formcard">
+            <div className="overlay"></div>
+            <Card className="uploadcsv form">
+            
+            </Card>
+            </div>
+            </TransitionablePortal>
+        );
+    }
+}
+
+export class UploadExcel extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            open:false
+        }
+    }
+
+
+    handleOpen = () => this.setState({open:true})
+    handleClose = () => this.setState({open:false})
+
+    render(){
+        return(
+            <TransitionablePortal
+            closeOnTriggerClick
+            closeOnDocumentClick
+            open={this.state.open}
+            onOpen={this.handleOpen}
+            onClose={this.handleClose}
+            openOnTriggerClick
+            transition={{animation:"fade down",duration:300}}
+            trigger={
+                <Button color="google plus" icon labelPosition="right">
+                <Icon name="cloud upload"/>
+                Import from Excel
+                </Button>
+            }
+            >
+            <div className="formcard">
+            <div className="overlay"></div>
+            <Card className="uploadexcel form">
+
+            </Card>
+            </div>
+            </TransitionablePortal>
+        );
+    }
+}
 
 export class NewSale extends React.Component{
     constructor(props){
@@ -120,6 +200,72 @@ export class NewSale extends React.Component{
     }
 }
 
+class NewCustomer extends React.Component{
+    state = {
+        fname:"",
+        sname:"",
+        idno:"",
+        phone:"",
+        gender:"",
+        aphone:"",
+        response:{},
+        error:{}
+    }
+
+    handleChange = e =>{
+        this.setState({[e.target.name]:e.target.value})
+    }
+
+    handleSubmit = () =>{
+        var data = {
+            fname:this.state.fname,
+            lname:this.state.sname,
+            id_no:this.state.idno,
+            phone_number:this.state.phone,
+            alternative_phone_number:this.state.aphone,
+            gender:this.state.gender
+        }
+        $.ajax({
+            url:'/api/customers/',
+            type:'POST',
+            data:data,
+            headers:{
+                'X-CSRFTOKEN':csrftoken
+            },
+            success:(res) =>{
+                this.setState({response:res})
+                this.props.handleClose();
+            },
+            error:(res) =>{
+                this.setState({error:res})
+            }
+        })
+    }
+
+    handleSelectChange = (e,{value,name}) =>{
+        this.setState({[name]:value});
+    }
+
+    render(){
+        const genders = [
+            {key:"F",text:"Female",value:"F"},
+            {key:"M",text:"Male",value:"M"}
+        ];
+        const {error} = this.state.error;
+        return(
+        <Form className="createcustomer">
+            <Form.Input name="fname" onChange={this.handleChange} placeholder="First name" onChange={this.handleChange}/>
+            <Form.Input name="sname" onChange={this.handleChange} placeholder="Last name"/>
+            <Form.Input name="idno" onChange={this.handleChange} placeholder="National ID"/>
+            <Form.Input name="phone" onChange={this.handleChange} placeholder="Phone number"/>
+            <Form.Select name="gender" onChange={this.handleSelectChange} placeholder="Gender" options={genders} />
+            <Form.Input name="aphone" onChange={this.handleChange} placeholder="Alternative phone number"/>
+            <Form.Button type="submit" fluid content="Add customer" onClick={this.handleSubmit}/>
+        </Form>
+        );
+    }
+}
+
 export class CustomerForm extends React.Component{
     constructor(props){
         super(props);
@@ -184,10 +330,6 @@ export class CustomerForm extends React.Component{
     }
 
     render(){
-        const genders = [
-            {key:"F",text:"Female",value:"FEMALE"},
-            {key:"M",text:"Male",value:"MALE"}
-        ];
         return(
             <div className="stage wow">
             <Grid>
@@ -199,15 +341,7 @@ export class CustomerForm extends React.Component{
                     </Form>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                    <Form className="createcustomer">
-                        <Form.Input name="fname" placeholder="First name" onChange={this.handleChange}/>
-                        <Form.Input name="sname" placeholder="Last name"/>
-                        <Form.Input name="idno" placeholder="National ID"/>
-                        <Form.Input name="phone" placeholder="Phone number"/>
-                        <Form.Select name="gender" placeholder="Gender" options={genders} />
-                        <Form.Input name="aphone" placeholder="Alternative phone number"/>
-                        <Form.Button type="submit" fluid content="Add customer"/>
-                    </Form>
+                    <NewCustomer handleClose={this.props.handleClose}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -352,7 +486,7 @@ class Forms extends React.Component{
         };
         switch (stage) {
             case 1:
-                return <CustomerForm handleChange={handleOnChange}/>
+                return <CustomerForm handleClose={this.props.handleClose} handleChange={handleOnChange}/>
             case 2:
                 return <ProductForm handleChange={handleOnChange}/>
             case 3:

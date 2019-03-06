@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from database.models import *
+from resources import SaleResource
+from tablib import Dataset
 
 
 @api_view(['GET','POST'])
@@ -182,3 +184,9 @@ def dashboard(request):
     }
 
     return Response(data)
+
+@api_view(['POST'])
+def uploadexcel(request):
+    if request.method == "POST":
+        sale_resource = SaleResource()
+        dataset = Dataset()
