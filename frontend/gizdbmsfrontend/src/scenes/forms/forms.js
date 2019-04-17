@@ -60,6 +60,10 @@ export class UploadExcel extends React.Component{
     handleOpen = () => this.setState({open:true})
     handleClose = () => this.setState({open:false})
 
+    handleUpload = () =>{
+        
+    }
+
     render(){
         return(
             <TransitionablePortal
@@ -80,7 +84,18 @@ export class UploadExcel extends React.Component{
             <div className="formcard">
             <div className="overlay"></div>
             <Card className="uploadexcel form">
-
+            <Card.Content header>
+            Import data from excel file
+            <span className="close">
+            <Icon name="window close outline" onClick={this.handleClose}/>
+            </span>
+            </Card.Content>
+            <Card.Content>
+                <Form>
+                    <Form.Input type="file" name="myfile"/>
+                    <Form.Button content="Upload" color="instagram"/>
+                </Form>
+            </Card.Content>
             </Card>
             </div>
             </TransitionablePortal>

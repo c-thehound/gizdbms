@@ -49,15 +49,40 @@ class Constituency(models.Model):
 
 
 class Sale(models.Model):
-    customer = models.ForeignKey(Customer,on_delete=models.CASCADE,null=False)
-    sales_man = models.ForeignKey("accounts.User",on_delete=models.CASCADE,null=False,default=1)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE,null=True)
+    sales_man = models.ForeignKey("accounts.User",on_delete=models.CASCADE,null=True,default=1)
     purchase_date = models.DateField(default=datetime.date.today,blank=False)
-    county = models.ForeignKey(County,on_delete=models.CASCADE)
-    product = models.ForeignKey(Product,on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    deposit = models.IntegerField()
-    credit_amount = models.IntegerField()
-    serial = models.CharField(max_length=200,blank=False)
+    county = models.CharField(max_length=500,null=True)
+    product = models.CharField(max_length=500,null=True)
+    quantity = models.IntegerField(null=True)
+    deposit = models.IntegerField(null=True)
+    credit_amount = models.IntegerField(null=True)
+    serial = models.CharField(max_length=200,blank=False,null=True)
 
     def __str__(self):
-        return self.product.name
+        return self.sales_man.username
+
+class SaleImport(models.Model):
+    date_of_purchase = models.DateField(default=datetime.date.today)
+    customer_name = models.CharField(max_length=500,blank=False)
+    gender = models.CharField(max_length=200,blank=False)
+    _id = models.CharField(max_length=200,default="")
+    phone = models.CharField(max_length=200,default="")
+    alternative_phone_number = models.CharField(max_length=200)
+    county = models.CharField(max_length=200)
+    sub_county = models.CharField(max_length=200)
+    product = models.CharField(max_length=500)
+    serial_number = models.CharField(max_length=300)
+    total_price = models.IntegerField(null=True)
+    deposit = models.IntegerField(null=True)
+    credit = models.IntegerField(null=True)
+    repayment_tenure = models.IntegerField(null=True)
+    status = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.product
+
+
+# Company
+# Product
+# Customer

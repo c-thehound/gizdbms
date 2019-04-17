@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from database.models import *
-from resources import SaleResource
+from .resources import SaleResource
 from tablib import Dataset
 
 
@@ -190,3 +190,27 @@ def uploadexcel(request):
     if request.method == "POST":
         sale_resource = SaleResource()
         dataset = Dataset()
+        new_sales = request.FILES['myfile']
+
+        imported_data = dataset.load(new_sales.read())
+        result = sale_resource.import_data(dataset,dry_run=True)
+
+        if not result.has_errors():
+            sale_resource.import_data(dataset,dry_run=False)
+            return Response({"success":"Data was successfully imported"})
+    return Response({"error":"Error during import"})
+
+@api_view(['POST'])
+def uploadexcelnew(request):
+    if request.method == "POST":
+        sale_resource = SaleNewResource()
+        dataset = Dataset()
+        new_sales = request.FILES['myfile']
+
+        imported_data = dataset.load(new_sales.read())
+        result = sale_resource.import_data(dataset,dry_run=True)
+
+        if not result.has_errors():
+            sale_resource.import_data(dataset,dry_run=False)
+            return Response({"success":"Data was successfully imported"})
+    return Response({"error":"Error during import"})

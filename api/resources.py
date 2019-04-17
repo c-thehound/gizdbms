@@ -5,3 +5,8 @@ class SaleResource(resources.ModelResource):
 
     class Meta:
         model = Sale
+
+class SaleNewResource(resources.ModelResource):
+
+    class Meta:
+        model = SaleImport
